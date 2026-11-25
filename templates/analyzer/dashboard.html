@@ -1,0 +1,131 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerLens | Electricity Intelligence</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="brand"><span>&#9889;</span> PowerLens</div>
+
+    <div class="menu-title">MENU</div>
+    <nav>
+        <a class="nav-link active" href="#dashboard">&#9632; Dashboard</a>
+        <a class="nav-link" href="#calculator">&#9632; Bill Calculator</a>
+        <a class="nav-link" href="#usage">&#9632; Usage Analysis</a>
+        <a class="nav-link" href="#tips">&#9632; Saving Tips</a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div>Electricity Intelligence</div>
+        <small>Student Project P53</small>
+    </div>
+</aside>
+
+<main class="main-content">
+
+    <header class="topbar" id="dashboard">
+        <div>
+            <div class="eyebrow">ELECTRICITY INTELLIGENCE PLATFORM</div>
+            <h1>Welcome to PowerLens</h1>
+            <p>Monitor your electricity consumption and estimate your bill.</p>
+        </div>
+        <div class="status"><span></span> System Ready</div>
+    </header>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Electricity Consumption</div>
+            <div class="stat-value">250 <span>kWh</span></div>
+            <div class="stat-note">Example dashboard data</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">Estimated Bill</div>
+            <div class="stat-value">INR 1,500</div>
+            <div class="stat-note">Illustrative amount</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-label">System Status</div>
+            <div class="stat-value">Ready</div>
+            <div class="stat-note">Enter your bill details below</div>
+        </div>
+    </section>
+
+    <section class="panel" id="calculator">
+        <div class="panel-top">
+            <div>
+                <div class="eyebrow">ESTIMATION TOOL</div>
+                <h2>Electricity Bill Calculator</h2>
+            </div>
+            <span class="pill">Interactive</span>
+        </div>
+
+        <p class="description">
+            Enter your electricity consumption to calculate an illustrative bill estimate.
+        </p>
+
+        <form id="billForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="units">Electricity consumed (units / kWh)</label>
+                <input type="number" id="units" min="0" step="any"
+                       placeholder="Example: 250" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rate">Rate per unit (INR)</label>
+                <input type="number" id="rate" min="0" step="any"
+                       value="6" required>
+            </div>
+
+            <button type="submit">Calculate My Bill</button>
+        </form>
+
+        <div class="result" id="result" aria-live="polite">
+            Your estimated bill will appear here.
+        </div>
+
+        <p class="note">
+            Note: This is a simple estimate (units x rate), not an official
+            utility tariff calculation. Taxes and fixed charges are not included.
+        </p>
+    </section>
+
+    <section class="panel secondary-panel" id="usage">
+        <div class="eyebrow">ENERGY OVERVIEW</div>
+        <h2>Usage Analysis</h2>
+        <p class="description">Illustrative monthly electricity consumption.</p>
+        <div class="chart-bars">
+            <div><span style="height:45%"></span><small>Jan</small></div>
+            <div><span style="height:65%"></span><small>Feb</small></div>
+            <div><span style="height:55%"></span><small>Mar</small></div>
+            <div><span style="height:85%"></span><small>Apr</small></div>
+            <div><span style="height:70%"></span><small>May</small></div>
+            <div><span style="height:60%"></span><small>Jun</small></div>
+        </div>
+    </section>
+
+    <section class="panel secondary-panel" id="tips">
+        <div class="eyebrow">ENERGY EFFICIENCY</div>
+        <h2>Electricity Saving Tips</h2>
+        <ul class="tips-list">
+            <li>Switch off lights and fans when they are not in use.</li>
+            <li>Use energy-efficient LED lighting.</li>
+            <li>Choose appliances with good energy ratings.</li>
+            <li>Avoid leaving electronic devices on standby.</li>
+        </ul>
+    </section>
+
+    <footer>PowerLens | Electricity Intelligence | Student Project P53</footer>
+</main>
+
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
